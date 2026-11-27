@@ -1,12 +1,14 @@
 // Token Radar's entrypoint (Node 22, standard library only).
 //
 // Reads the sealed DefiLlama snapshot, scores every genuine launch candidate with
-// the radar-2 model in lib/model.ts, and writes the entry's output: board.json (the
+// the radar-3 model in lib/model.ts, and writes the entry's output: board.json (the
 // ranked board), data.js (the dashboard's dataset), the dashboard/ page, the
 // screenshots/, and dossier.json (the summary the judge reads, built with the
 // vendored make.fun library). The run is deterministic: the same snapshot in gives
 // the same bytes out, so the grader's two runs agree.
 //
+// The output directory is created when missing and filled in place; it is never
+// deleted, so a grader that mounts it writable under a read-only parent still works.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts --input ../input/snapshot.json
 
